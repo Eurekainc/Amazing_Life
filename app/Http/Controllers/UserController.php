@@ -20,6 +20,7 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
+    
     /**
     VARIOUS USER FUNCTIONS THAT TAKE DATA TO RESPECTIVE PAGES
     **/
