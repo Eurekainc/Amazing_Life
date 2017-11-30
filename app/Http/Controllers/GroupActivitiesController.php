@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use App\GroupActivities;
 
-class ForumsController extends Controller
+class GroupActivitiesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +15,7 @@ class ForumsController extends Controller
      */
     public function index()
     {
-        return view('forums.index');
+        //
     }
 
     /**

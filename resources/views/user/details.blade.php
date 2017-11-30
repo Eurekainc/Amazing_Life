@@ -13,7 +13,7 @@
         <li><a href="/user/people">People</a></li>
       </ul>
       <br />
-      <a href="" class="btn btn-primary btn-md">Update Details</a>
+      <a href="/user/details/{{Auth::user()->id}}/edit" class="btn btn-primary btn-md">Update Details</a>
                                 <br />
                                 <table class="table">
                                     <thead>

@@ -17,9 +17,9 @@ class DetailsController extends Controller
      */
      public function index()
      {
-       $group = Group::whereId(Auth::user()->group)->first();
-       $department = Department::whereId(Auth::user()->department)->first();
-     	 return view('user.details',['group'=>$group, 'department'=>$department]);
+        $group = Group::whereId(Auth::user()->group)->first();
+        $department = Department::whereId(Auth::user()->department)->first();
+        return view('user.details',['group'=>$group, 'department'=>$department]);
      }
 
     /**

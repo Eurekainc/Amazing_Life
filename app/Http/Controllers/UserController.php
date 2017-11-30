@@ -6,7 +6,6 @@ use App\User;
 use App\Group;
 use App\People;
 use App\Department;
-use App\UserDetail;
 
 class UserController extends Controller
 {
@@ -22,7 +21,7 @@ class UserController extends Controller
     }
 
     /**
-
+    VARIOUS USER FUNCTIONS THAT TAKE DATA TO RESPECTIVE PAGES
     **/
     public function index(){
     	return view('user.index');
@@ -44,34 +43,8 @@ class UserController extends Controller
     }
 
     public function details(){
-      $group = Group::whereId(Auth::user()->group)->first();
-      $department = Department::whereId(Auth::user()->department)->first();
+        $group = Group::whereId(Auth::user()->group)->first();
+        $department = Department::whereId(Auth::user()->department)->first();
     	return view('user.details',['group'=>$group, 'department'=>$department]);
     }
-
-    public function getUpdate(){
-
-    	return view('user.update');
-    }
-
-    public function update(Request $request){
-      $id = Auth::user()->id;
-
-      $this->validate($request, [
-        'name'=>'required',
-        'phone' => 'required',
-        'email' => 'required',
-        'home_address' => 'required'
-      ]);
-
-      //EDIT DETAILS
-      $user = UserDetail::find($id);
-      $user->name = $request->input('name');
-      $user->phone = $request->input('phone');
-      $user->email = $request->input('email');
-      $user->home_address = $request->input('home_address');
-    	return view('/user')->with('success','Your details have been successfully updated!');
-    }
-
-
 }
