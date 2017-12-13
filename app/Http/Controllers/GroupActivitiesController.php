@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\GroupActivities;
+use App\Group;
+use App\Department;
+use App\UserDetail;
+use DB;
 
 class GroupActivitiesController extends Controller
 {
@@ -14,8 +18,20 @@ class GroupActivitiesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    { 
+         
+        $posts = GroupActivities::whereGroup(Auth::user()->group)->whereDepartment(Auth::user()->department)->paginate(2);
+        $group = Group::whereId(Auth::user()->group)->first();
+        $department = Department::whereId(Auth::user()->department)->first();
+
+        if(count($posts) > 0) {
+            foreach($posts as $post){
+                $users = UserDetail::whereId($post->user_id)->get();
+            }
+            return view('user.groups',['group'=>$group, 'department'=>$department,'posts'=>$posts,'users'=>$users]);
+        } else {
+            return view('user.groups',['group'=>$group, 'department'=>$department,'posts'=>$posts]);
+        }
     }
 
     /**

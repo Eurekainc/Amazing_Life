@@ -18,8 +18,10 @@ Route::get('/about', 'AboutController@index');
 
 //User profile routes start:
 Route::get('/user', 'UserController@index');
+
 Route::resource('/user/details', 'DetailsController');
-Route::get('/user/groups', 'UserController@groups');
+Route::resource('/user/groups', 'GroupActivitiesController');
+
 Route::get('/user/people', 'UserController@people');
 Route::get('/user/notifications', 'UserController@notifications');
 //End user profile routes

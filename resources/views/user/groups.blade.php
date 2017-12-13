@@ -19,6 +19,7 @@
                                   <div class="row">
                                       <div class="col-md-12">
                                         <br />
+                                      {{--  GROUP COMMENT FORM  --}}
                                           <form class="form">
                                               <div class="form-group">
                                                   <label></label>
@@ -28,6 +29,26 @@
                                                 <input class="btn btn-primary btn-md" value="Comment" type="submit" name="comment">
                                               </div>
                                           </form>
+                                      {{--  END GROUP COMMENT FORM  --}}
+
+                                      {{--  GROUP POSTS SECTION  --}}
+                                          <div class="row">
+                                            <div class="col-md-12">
+                                            <?php if(count($posts) > 0): ?>
+                                                
+                                                    <div class="">
+                                                        @foreach($posts as $post)                                                                
+                                                            <h5><b>{{ $post->user }}</b></h5><small>says:</small> <br />         
+                                                              <blockquote class=""><p>{{ $post->content }}</p></blockquote> 
+                                                          <hr />
+                                                        @endforeach
+                                                    </div>
+                                                    <div class="text-center"> {{$posts->links()}} </div>
+                                                <?php endif; ?>
+                                            </div>
+                                          </div>
+                                      {{--  END GROUP POSTS SECTION  --}}
+
                                       </div>
                                   </div>
                                 @endif

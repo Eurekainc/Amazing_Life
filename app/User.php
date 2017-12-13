@@ -27,8 +27,8 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    // public function userDetail(){
-    //     return $this->hasMany('App\UserDetail');
-    // }
+    public function groupPosts(){
+        return $this->hasMany('App\GroupActivities');
+    }
     
 }
