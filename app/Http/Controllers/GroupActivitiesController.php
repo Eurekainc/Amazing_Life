@@ -12,6 +12,11 @@ use DB;
 
 class GroupActivitiesController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -20,18 +25,11 @@ class GroupActivitiesController extends Controller
     public function index()
     { 
          
-        $posts = GroupActivities::whereGroup(Auth::user()->group)->whereDepartment(Auth::user()->department)->paginate(2);
+        $posts = GroupActivities::whereGroup(Auth::user()->group)->whereDepartment(Auth::user()->department)->orderBy('id','desc')->paginate(10);
         $group = Group::whereId(Auth::user()->group)->first();
         $department = Department::whereId(Auth::user()->department)->first();
-
-        if(count($posts) > 0) {
-            foreach($posts as $post){
-                $users = UserDetail::whereId($post->user_id)->get();
-            }
-            return view('user.groups',['group'=>$group, 'department'=>$department,'posts'=>$posts,'users'=>$users]);
-        } else {
-            return view('user.groups',['group'=>$group, 'department'=>$department,'posts'=>$posts]);
-        }
+        return view('user.groups',['group'=>$group, 'department'=>$department,'posts'=>$posts]);
+    
     }
 
     /**
@@ -52,7 +50,18 @@ class GroupActivitiesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'comment'=>'required',
+        ]);
+
+        $comment = new GroupActivities;
+        $comment->user = Auth::user()->id;
+        $comment->department = Auth::user()->department;
+        $comment->group = Auth::user()->group;
+        $comment->content = $request->input('comment');
+
+        $comment->save();
+        return redirect('user/groups')->with('success','Comment Submitted!');;
     }
 
     /**

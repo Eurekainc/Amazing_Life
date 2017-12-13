@@ -16,19 +16,22 @@
       @if(Auth::user()->group == 0)
                                 <h3 class="text-center">You do not belong to any group yet.</h3>
                               @else
+                             
                                   <div class="row">
                                       <div class="col-md-12">
                                         <br />
                                       {{--  GROUP COMMENT FORM  --}}
-                                          <form class="form">
+                                          <form class="form" method="POST" action="/user/groups">
+                                           {{ csrf_field() }}
                                               <div class="form-group">
                                                   <label></label>
                                                   <textarea name="comment" placeholder="Say something..." rows="5" class="form-control"></textarea>
                                               </div>
                                               <div class="form-group">
-                                                <input class="btn btn-primary btn-md" value="Comment" type="submit" name="comment">
+                                                <input class="btn btn-primary btn-md" value="Comment" type="submit" name="save">
                                               </div>
                                           </form>
+                                          <hr/>
                                       {{--  END GROUP COMMENT FORM  --}}
 
                                       {{--  GROUP POSTS SECTION  --}}
@@ -38,13 +41,14 @@
                                                 
                                                     <div class="">
                                                         @foreach($posts as $post)                                                                
-                                                            <h5><b>{{ $post->user }}</b></h5><small>says:</small> <br />         
+                                                            <h5><b>{{ $post->user }} </b></h5>
+                                                            <h6><b>Posted On:</b> {{ $post->created_at->format('j-M-Y') }} - {{ $post->created_at->format('H:i') }} </h6>
                                                               <blockquote class=""><p>{{ $post->content }}</p></blockquote> 
                                                           <hr />
                                                         @endforeach
                                                     </div>
                                                     <div class="text-center"> {{$posts->links()}} </div>
-                                                <?php endif; ?>
+                                            <?php endif; ?>
                                             </div>
                                           </div>
                                       {{--  END GROUP POSTS SECTION  --}}
