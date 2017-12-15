@@ -8,7 +8,7 @@ use App\GroupActivities;
 use App\Group;
 use App\Department;
 use App\UserDetail;
-use DB;
+use App\user;
 
 class GroupActivitiesController extends Controller
 {
@@ -23,13 +23,24 @@ class GroupActivitiesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    { 
-         
-        $posts = GroupActivities::whereGroup(Auth::user()->group)->whereDepartment(Auth::user()->department)->orderBy('id','desc')->paginate(10);
+    {
+        $posts = GroupActivities::whereGroup(Auth::user()
+                                  ->group)->whereDepartment(Auth::user()
+                                  ->department)->orderBy('id','desc')
+                                  ->paginate(10);
+
         $group = Group::whereId(Auth::user()->group)->first();
         $department = Department::whereId(Auth::user()->department)->first();
-        return view('user.groups',['group'=>$group, 'department'=>$department,'posts'=>$posts]);
-    
+        if(count($posts) > 0) {
+          foreach($posts as $post){
+            $uid = $post->user_id;
+            $users = user::find($uid)->GroupActivities;
+          }
+
+          return view('user.groups',['group'=>$group, 'department'=>$department,'posts'=>$posts,'users'=>$users]);
+        } else {
+          return view('user.groups',['group'=>$group, 'department'=>$department,'posts'=>$posts]);
+        }
     }
 
     /**
@@ -55,13 +66,12 @@ class GroupActivitiesController extends Controller
         ]);
 
         $comment = new GroupActivities;
-        $comment->user = Auth::user()->id;
+        $comment->user_id = Auth::user()->id;
         $comment->department = Auth::user()->department;
         $comment->group = Auth::user()->group;
         $comment->content = $request->input('comment');
-
         $comment->save();
-        return redirect('user/groups')->with('success','Comment Submitted!');;
+        return redirect('user/groups')->with('success','Post Submitted!');;
     }
 
     /**

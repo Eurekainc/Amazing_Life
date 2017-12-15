@@ -16,7 +16,7 @@
       @if(Auth::user()->group == 0)
                                 <h3 class="text-center">You do not belong to any group yet.</h3>
                               @else
-                             
+
                                   <div class="row">
                                       <div class="col-md-12">
                                         <br />
@@ -28,7 +28,7 @@
                                                   <textarea name="comment" placeholder="Say something..." rows="5" class="form-control"></textarea>
                                               </div>
                                               <div class="form-group">
-                                                <input class="btn btn-primary btn-md" value="Comment" type="submit" name="save">
+                                                <input class="btn btn-primary btn-md" style="width:200px" value="Post" type="submit" name="save">
                                               </div>
                                           </form>
                                           <hr/>
@@ -38,13 +38,15 @@
                                           <div class="row">
                                             <div class="col-md-12">
                                             <?php if(count($posts) > 0): ?>
-                                                
+
                                                     <div class="">
-                                                        @foreach($posts as $post)                                                                
-                                                            <h5><b>{{ $post->user }} </b></h5>
+                                                        @foreach($posts as $post)
+
+                                                            <h5><b>{{ $post->user->name }} </b></h5>
                                                             <h6><b>Posted On:</b> {{ $post->created_at->format('j-M-Y') }} - {{ $post->created_at->format('H:i') }} </h6>
-                                                              <blockquote class=""><p>{{ $post->content }}</p></blockquote> 
+                                                              <blockquote class=""><p>{{ $post->content }}</p></blockquote>
                                                           <hr />
+
                                                         @endforeach
                                                     </div>
                                                     <div class="text-center"> {{$posts->links()}} </div>
@@ -56,7 +58,7 @@
                                       </div>
                                   </div>
                                 @endif
-      
+
     </div>
     <div class="panel-footer"></div>
   </div>

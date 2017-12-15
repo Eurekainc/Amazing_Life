@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.7.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 18, 2017 at 10:01 AM
+-- Host: localhost
+-- Generation Time: Dec 15, 2017 at 02:47 PM
 -- Server version: 10.1.26-MariaDB
--- PHP Version: 7.1.9
+-- PHP Version: 7.1.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -128,6 +128,37 @@ INSERT INTO `groups` (`id`, `department`, `group`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `group_activities`
+--
+
+CREATE TABLE `group_activities` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `group` int(11) NOT NULL,
+  `department` int(11) NOT NULL,
+  `content` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=armscii8;
+
+--
+-- Dumping data for table `group_activities`
+--
+
+INSERT INTO `group_activities` (`id`, `user_id`, `group`, `department`, `content`, `created_at`, `updated_at`) VALUES
+(20, 2, 1, 1, 'Hello, Victory is mine at last!!!!!!!!!!!!!!!!!!!', '2017-12-15 11:26:05', '2017-12-15 11:26:05'),
+(21, 6, 1, 1, 'The quick brown fox jumps over the lazy Dog!', '2017-12-15 13:29:48', '2017-12-15 11:26:46'),
+(22, 6, 1, 1, 'Sorry, i meant to say Hello. :)', '2017-12-15 11:27:06', '2017-12-15 11:27:06'),
+(23, 2, 1, 1, 'Hey Blake, long time no see :D how ave you been?', '2017-12-15 11:29:04', '2017-12-15 11:29:04'),
+(24, 6, 1, 1, 'So, wat are you up to?', '2017-12-15 11:31:36', '2017-12-15 11:31:36'),
+(25, 2, 1, 1, 'Nothing much, just coding thats all :). \r\nYou?', '2017-12-15 11:32:03', '2017-12-15 11:32:03'),
+(26, 6, 1, 1, 'Surfing the Interwebs, the day is moving rather slow.... :/', '2017-12-15 11:34:02', '2017-12-15 11:34:02'),
+(28, 9, 2, 1, 'Hello, Tis is James, i\'m New here', '2017-12-15 11:40:51', '2017-12-15 11:40:51'),
+(29, 10, 2, 1, 'Hai James, Lara here. I\'m also new :) . Nice to meet you!', '2017-12-15 11:46:13', '2017-12-15 11:46:13');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -192,10 +223,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `photo`, `dob`, `gender`, `department`, `group`, `email`, `phone`, `home_address`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(2, 'Thulani Tembo', '', '1996-06-07', 'Male', 1, 1, 'tembothulani@gmail.com', '+260976245430', '107, Chudleigh', '$2y$10$nvZYsjiOaIvlZdSBrH7HAuAKvNSMo2N8D.bt0KzmzdW3mE4Kn3Uxi', 'm3x6SCWNZWKkOdnCQr4XQyRdhci9tDGeWqYQn8KmR66xLL62SEjSRVDMZVFz', '2017-11-04 01:38:19', '2017-11-04 01:38:19'),
-(6, 'Blake Lively', '', '2017-11-01', 'Female', 2, 1, 'blake@gmail.com', '+260976245430', 'USA', '$2y$10$v4Mzsls2LgCcivg3Ch2kmeuQ4bOvLrVjeD5HSk7HKPRd3bLPVWYxm', 'Ecwu9I9j2p0AuHtUblRcTMSy5iJ9oCzN5PKH7V5yfUbmaMWhqAqrkNPMoPbZ', '2017-11-14 05:08:15', '2017-11-14 05:08:15'),
-(7, 'James', '', '2017-11-07', 'Male', 3, 0, 'james@yahoo.com', '+260976245430', '157/13 New Ng\'ombe Compound', '$2y$10$Z57chhBpVXCIL3z1J7mwNe2Dqp5X4GztAqNqo9MtzCTRztagj2x2G', 'ImJK9w3GCeU3Z0ujf7ce4zESmPUArZ9MkhELfyrJorLX58bhIZ5Axz82WXet', '2017-11-14 08:59:11', '2017-11-14 08:59:11'),
-(8, 'Test', NULL, '2017-11-05', 'Male', 1, 0, 'test@gmail.com', '0976245430', 'New Ngombe Compound', '$2y$10$kfFPiAWhYB3MexkVpfkh4ud4a5CC3gt1UxkqprCJAWA7BqX1.s/.2', 'BpvSi8HzKLVvLb78471HmgzHZE9K1gTXlJLzCf6LhrzCkrj1PRcZRNgpiopH', '2017-11-18 09:15:02', '2017-11-18 09:15:02');
+(2, 'Thulani Tembo', '', '1996-06-07', 'Male', 1, 1, 'tembothulani@gmail.com', '+260976245430', '11o, Chudleigh', '$2y$10$nvZYsjiOaIvlZdSBrH7HAuAKvNSMo2N8D.bt0KzmzdW3mE4Kn3Uxi', 'jTbSaZurgJLlKM3WxtYHyhcJ2EpgLcbGJRL4YNllbXKptI87ganQQsPzStt2', '2017-11-04 01:38:19', '2017-12-15 11:03:49'),
+(6, 'Blake Live', '', '2017-11-01', 'Female', 1, 1, 'blake@gmail.com', '+260976245430', 'USA', '$2y$10$v4Mzsls2LgCcivg3Ch2kmeuQ4bOvLrVjeD5HSk7HKPRd3bLPVWYxm', 'GxIigtpCORr4lZbehKl3pcY1mNfXnyk8cjfcZ4PyhtIx7KOTxNr20gjGMMTQ', '2017-11-14 05:08:15', '2017-12-13 20:03:10'),
+(9, 'James Dolce', NULL, '1996-12-07', 'Male', 1, 2, 'james@gmail.com', '0962454530', 'Chelstone', '$2y$10$UJdI1AfRh8TIBy/qKGZDNegENwfPIHu3fITxjMO754ppUgx0UqOK2', NULL, '2017-12-15 11:38:43', '2017-12-15 11:38:43'),
+(10, 'Lara Croft', NULL, '1989-01-10', 'Female', 1, 2, 'lara@gmail.com', '0976789898', 'Chalo Trust', '$2y$10$v2BCuRhX4KoiCmS3M3RRLujUHfcQxVSplPdXaNQbirMMe8Nig30tm', NULL, '2017-12-15 11:44:50', '2017-12-15 11:44:50');
 
 -- --------------------------------------------------------
 
@@ -248,6 +279,12 @@ ALTER TABLE `groups`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `group_activities`
+--
+ALTER TABLE `group_activities`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
@@ -280,55 +317,51 @@ ALTER TABLE `videos`
 --
 ALTER TABLE `articles`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `departments`
 --
 ALTER TABLE `departments`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+--
+-- AUTO_INCREMENT for table `group_activities`
+--
+ALTER TABLE `group_activities`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
 --
 -- AUTO_INCREMENT for table `resources`
 --
 ALTER TABLE `resources`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `videos`
 --
 ALTER TABLE `videos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-COMMIT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

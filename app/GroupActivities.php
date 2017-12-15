@@ -8,7 +8,8 @@ class GroupActivities extends Model
     protected $table  = 'group_activities';
 
     public function user(){
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(user::class);
     }
+
 }
  
