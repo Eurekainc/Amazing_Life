@@ -36,7 +36,6 @@ class GroupActivitiesController extends Controller
             $uid = $post->user_id;
             $users = user::find($uid)->GroupActivities;
           }
-
           return view('user.groups',['group'=>$group, 'department'=>$department,'posts'=>$posts,'users'=>$users]);
         } else {
           return view('user.groups',['group'=>$group, 'department'=>$department,'posts'=>$posts]);
