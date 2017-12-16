@@ -27,14 +27,8 @@ class UserController extends Controller
     	return view('user.index');
     }
 
-    // public function groups(){
-    //     $group = Group::whereId(Auth::user()->group)->first();
-    //     $department = Department::whereId(Auth::user()->department)->first();
-    //     return view('user.groups',['group'=>$group, 'department'=>$department]);
-    // }
-
     public function people(){
-        $people = People::paginate(3);
+        $people = People::paginate(10);
     	return view('user.people')->with('people',$people);
     }
 
@@ -42,9 +36,5 @@ class UserController extends Controller
     	return view('user.notifications');
     }
 
-    public function details(){
-        $group = Group::whereId(Auth::user()->group)->first();
-        $department = Department::whereId(Auth::user()->department)->first();
-    	return view('user.details',['group'=>$group, 'department'=>$department]);
-    }
+
 }
