@@ -88,7 +88,6 @@ class DetailsController extends Controller
           $user->email = $request->input('email');
           $user->home_address = $request->input('home_address');
           $user->save();
-          
           return redirect('user/details')->with('success','Your details have been successfully updated!');
     }
 
