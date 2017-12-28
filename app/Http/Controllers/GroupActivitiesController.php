@@ -69,7 +69,7 @@ class GroupActivitiesController extends Controller
         $comment->group = Auth::user()->group;
         $comment->content = $request->input('comment');
         $comment->save();
-        return redirect('user/groups')->with('success','Post Submitted!');;
+        return redirect('user/groups')->with('success','Post Submitted!');
     }
 
     /**
