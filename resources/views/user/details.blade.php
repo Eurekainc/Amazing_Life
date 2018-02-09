@@ -11,6 +11,9 @@
         <li class="active"><a href="/user/details">My Details</a></li>
         <li><a href="/user/notifications">My Notifications</a></li>
         <li><a href="/user/people">People</a></li>
+        @if(Auth::user()->account_type == 1)
+        <li><a href="/user/admin/">Admin Panel</a></li>
+      @endif
       </ul>
       <br />
       <a href="/user/details/{{Auth::user()->id}}/edit" class="btn btn-primary btn-md">Update Details</a>

@@ -3,14 +3,16 @@
 <div class="container">
 <div class="col-md-10 col-md-offset-1">
   <div class="panel panel-primary">
-    <div class="panel-heading text-center">Hello, {{Auth::user()->name}}.</div>
+    <div class="panel-heading text-center">Welcome to the admin panel, {{Auth::user()->name}}.</div>
     <div class="panel-body">
       <ul class="nav nav-tabs">
         <li class="active"><a href="/user/">Home</a></li>
-        <li ><a href="/user/groups">My Group Activities</a></li>
-        <li ><a href="/user/details">My Details</a></li>
-        <li><a href="/user/notifications">My Notifications</a></li>
-        <li><a href="/user/people">People</a></li>
+        <li ><a href="/user/groups">Articles</a></li>
+        <li><a href="/user/people">Events</a></li>
+        <li><a href="/user/people">Admins</a></li>
+        <li ><a href="/user/details">Videos</a></li>
+        <li><a href="/user/notifications">Resources</a></li>
+        <li><a href="/user/people">Registered Users</a></li>
       </ul>
 
       <div class="row "><br/>

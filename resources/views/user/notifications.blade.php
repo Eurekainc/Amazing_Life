@@ -11,6 +11,9 @@
         <li ><a href="/user/details">My Details</a></li>
         <li class="active"><a href="/user/notifications">My Notifications</a></li>
         <li ><a href="/user/people">People</a></li>
+        @if(Auth::user()->account_type == 1)
+        <li><a href="/user/admin/">Admin Panel</a></li>
+      @endif
       </ul>
 
       <h1>Hail groups</h1>

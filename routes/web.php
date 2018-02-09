@@ -32,3 +32,6 @@ Route::resource('events', 'EventsController');
 Route::resource('forums', 'ForumsController');
 Route::resource('videos', 'VideosController');
 
+// Administration Routes
+Route::get('/user/admin/','AdminPagesController@index');
+
